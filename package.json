@@ -1,0 +1,23 @@
+{
+  "name": "example-hello-world-for-rancher",
+  "version": "0.0.1",
+  "description": "Proof of concept for integration with rancher",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adam-golab/example-hello-world-for-rancher.git"
+  },
+  "author": "Adam Golab",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adam-golab/example-hello-world-for-rancher/issues"
+  },
+  "homepage": "https://github.com/adam-golab/example-hello-world-for-rancher#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
