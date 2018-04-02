@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: docker:stable-git
+    working_directory: ~/node-hello-world
+    steps:
+      - checkout
+      - run: docker login -u adam -p pbzN38kxA8X_NWYzsAhz 54.38.193.11:5000
+      - run: docker build -t 54.38.193.11:5000/adam/node-hello-world .
+
+  deploy:
+    docker:
+      - image: protocool/rancher-circleci
+    working_directory: ~/node-hello-world
+    steps:
+      - checkout
+      - run: docker push 54.38.193.11:5000/adam/node-hello-world:latest
+      - run: rancher-compose --url http://54.38.193.11:8080 --access-key A588334A683021818400 --secret-key 5ULLKuiNzbPvvuJTHMK2mWz5U8ZRkEn9KZZQxiGe up
+      - run: rancher-compose --upgrade node-hello-world/node-hello-world
+      - run: rancher-compose --confirm-upgrade node-hello-world/node-hello-world
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
