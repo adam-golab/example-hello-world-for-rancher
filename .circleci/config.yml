@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: docker:stable-git
+      - image: protocool/rancher-circleci
     working_directory: ~/node-hello-world
     steps:
       - checkout
