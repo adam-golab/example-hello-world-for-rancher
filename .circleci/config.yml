@@ -9,6 +9,7 @@ jobs:
     working_directory: ~/node-hello-world
     steps:
       - checkout
+      - run: docker --version
       - run: docker build -t registry.dev.brainhub.pl/hello-world/node-hello-world .
 
   deploy:
