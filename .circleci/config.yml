@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  build-and-deploy:
     docker:
       - image: registry.dev.brainhub.pl/tools/rancher-circleci
         auth:
