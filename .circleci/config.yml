@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  build_and_deploy:
     docker:
       - image: registry.dev.brainhub.pl/tools/rancher-circleci
         auth:
@@ -12,17 +12,6 @@ jobs:
       - setup_remote_docker
       - run: docker --version
       - run: docker build -t registry.dev.brainhub.pl/hello-world/node-hello-world .
-
-  deploy:
-    docker:
-      - image: registry.dev.brainhub.pl/tools/rancher-circleci
-        auth:
-          username: $HARBOR_USER
-          password: $HARBOR_PASSWORD
-    working_directory: ~/node-hello-world
-    steps:
-      - checkout
-      - setup_remote_docker
       - run: docker push registry.dev.brainhub.pl/hello-world/node-hello-world:latest
       - run: rancher-compose --url http://54.38.193.11:8080 --access-key A588334A683021818400 --secret-key 5ULLKuiNzbPvvuJTHMK2mWz5U8ZRkEn9KZZQxiGe up
       - run: rancher-compose --upgrade node-hello-world/node-hello-world
@@ -32,10 +21,7 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build
-      - deploy:
-          requires:
-            - build
+      - build_and_deploy
           filters:
             branches:
               only: master
