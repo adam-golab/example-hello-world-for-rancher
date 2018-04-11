@@ -10,7 +10,6 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: docker --version
       - run: docker login -u $HARBOR_USER -p $HARBOR_PASSWORD registry.dev.brainhub.pl
       - run: docker build -t registry.dev.brainhub.pl/hello-world/node-hello-world .
       - run: docker push registry.dev.brainhub.pl/hello-world/node-hello-world:latest
