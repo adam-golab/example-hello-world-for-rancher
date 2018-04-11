@@ -1,0 +1,10 @@
+version: '2'
+services:
+  node-hello-world:
+    image: registry.dev.brainhub.pl/hello-world/node-hello-world
+    environment:
+      PORT: '8080'
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
