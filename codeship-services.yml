@@ -4,3 +4,6 @@ rancher_deploy:
   image: registry.dev.brainhub.pl/tools/rancher-circleci
   encrypted_env_file: env.encrypted
   encrypted_dockercfg_path: dockercfg.encrypted
+  volumes:
+    - ./docker-compose.yml:/app/docker-compose.yml
+    - ./rancher-compose.yml:/app/rancher-compose.yml
