@@ -1,0 +1,6 @@
+app:
+  build: .
+rancher_deploy:
+  build: registry.dev.brainhub.pl/tools/rancher-circleci
+  encrypted_env_file: environment.encrypted
+  encrypted_dockercfg_path: dockercfg.encrypted

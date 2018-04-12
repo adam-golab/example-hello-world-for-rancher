@@ -1,0 +1,10 @@
+- service: app
+  tag: master
+  type: push
+  image_name: registry.dev.brainhub.pl/hello-world/node-hello-world
+  iamge_tag: latest
+  registry: registry.dev.brainhub.pl
+  encrypted_dockercfg_path: dockercfg.encrypted
+- service: rancher_deploy
+  tag: master
+  command: rancher-compose --project-name node-hello-world --verbose up -d --force-upgrade --pull --confirm-upgrade node-hello-world
