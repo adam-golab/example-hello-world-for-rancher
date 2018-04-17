@@ -1,3 +1,8 @@
+dev_app:
+  build:
+    dockerfile: Dockerfile
+    args:
+      NODE_ENV: development
 app:
   build: .
 rancher_deploy:
