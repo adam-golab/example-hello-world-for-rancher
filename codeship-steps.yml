@@ -1,4 +1,4 @@
-- service: app
+- service: app_dev
   command: npm run lint
 - service: app
   tag: master

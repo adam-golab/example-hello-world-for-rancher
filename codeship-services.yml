@@ -1,4 +1,4 @@
-dev_app:
+app_dev:
   build:
     dockerfile: Dockerfile
     args:
