@@ -1,0 +1,31 @@
+image: registry.dev.brainhub.pl/tools/rancher-circleci
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - deploy
+
+before_script:
+  - docker --version
+
+build_master:
+  stage: build
+  tags:
+    - rancher
+  script:
+    - docker login -u $HARBOR_USER -p $HARBOR_PASSWORD registry.dev.brainhub.pl
+    - docker build -f Dockerfile-prod -t registry.dev.brainhub.pl/hello-world/node-hello-world .
+    - docker push registry.dev.brainhub.pl/hello-world/node-hello-world:latest
+  only:
+    - master
+
+deploy_master:
+  stage: deploy
+  tags:
+    - rancher
+  script:
+    - rancher-compose --project-name node-hello-world --verbose up -d --force-upgrade --pull --confirm-upgrade node-hello-world
+  only:
+    - master
